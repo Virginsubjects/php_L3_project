@@ -72,4 +72,5 @@ class Dresseur
 
         return $this;
     }
+
 }

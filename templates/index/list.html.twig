@@ -1,4 +1,7 @@
 {%  extends "base.html.twig" %}
 {%  block body  %}
     <h1>list</h1>
+    {% for poke in pokemons %}
+        {{ poke.name }}
+    {% endfor %}
 {%  endblock %}
