@@ -1,1 +1,2 @@
-# php_L3_project
+# projet de L3 MIAGE
+# PHP + Symfony
