@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Pokemon;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,8 +57,18 @@ class SecurityController extends AbstractController
                 )
             );
             $user->setRoles(["ROLE_USER"]);
+
             $manager->persist($user);
             $manager->flush();
+            //a pokemon is attached to the trainer that came to be created
+            $pokes = array("Bulbizarre","Carapuce", "Salamech");
+            $pokemon = new Pokemon();
+            $pokemon->setDresseurId($user->getId());
+            $pokemon->setName($pokes[random_int(0, 2)]);
+            $manager->persist($pokemon);
+            $manager->flush();
+
+            return $this->redirectToRoute("app_login");
         }
         return $this->render('security/registration.html.twig', [
         'form' => $form->createView()

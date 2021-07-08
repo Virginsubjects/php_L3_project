@@ -32,12 +32,35 @@ class Pokemon
      */
     private $dresseur_id;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $expe;
+
+    private $forSale = false;
+    private $price;
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    public function setForSale($price){
+        $this->price = $price;
+        $this->forSale = true;
+
+        return this;
+    }
+
+    public function getForSale(){
+        return $this->forSale;
+    }
+
+    public function getPrice(){
+        return $this->price;
+    }
     public function getName(): ?string
     {
         return $this->name;
@@ -82,6 +105,18 @@ class Pokemon
     public function setDresseurId(int $dresseur_id): self
     {
         $this->dresseur_id = $dresseur_id;
+
+        return $this;
+    }
+
+    public function getExpe(): ?int
+    {
+        return $this->expe;
+    }
+
+    public function setExpe(?int $expe): self
+    {
+        $this->expe = $expe;
 
         return $this;
     }

@@ -41,9 +41,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="object")
+     */
+    private $pokeChooseForFighting;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setPokeForFighting($pokemon){
+        $this->pokeChooseForFighting = $pokemon;
+
+        return $this;
+    }
+
+    public function getPokeForFighting(){
+        return $this->pokeChooseForFighting;
     }
 
     public function getEmail(): ?string
